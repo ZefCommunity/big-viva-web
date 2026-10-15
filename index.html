@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Big Viva: hair and beauty products for hair, skin and makeup.">
+  <title>Big Viva | Hair and Beauty Products</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fff4f8;
+      --ink: #2a0f2e;
+      --muted: #6b4f70;
+      --plum: #2a0f2e;
+      --on-plum: #fff4f8;
+      --pink: #d81e78;
+      --gold: #e8b04a;
+      --lilac: #b58ae0;
+      --line: #ecd3e0;
+      --display: "Syne", "Arial Black", Arial, sans-serif;
+      --body: "DM Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) { --bg: #1b0a1e; --ink: #fff4f8; --muted: #cbb0cf; --plum: #3a1440; --line: #4a2650; }
+    }
+    :root[data-theme="dark"] { --bg: #1b0a1e; --ink: #fff4f8; --muted: #cbb0cf; --plum: #3a1440; --line: #4a2650; }
+    html { scroll-behavior: smooth; }
+    *, *::before, *::after { box-sizing: inherit; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 1.0625rem/1.6 var(--body); }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+    .wrap { width: min(1080px, 100% - 2.5rem); margin-inline: auto; }
+
+    /* header + nav */
+    .site-header { background: var(--plum); color: var(--on-plum); }
+    .site-header .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem 1.5rem; padding-block: 1rem; }
+    .logo { font: 800 1.4rem var(--display); text-decoration: none; letter-spacing: -.01em; }
+    .site-nav ul { display: flex; flex-wrap: wrap; gap: .25rem 1.5rem; list-style: none; margin: 0; padding: 0; }
+    .site-nav a { text-decoration: none; padding: .25rem 0; border-bottom: 2px solid transparent; }
+    .site-nav a:hover { border-color: var(--gold); }
+
+    /* hero */
+    .hero { background: var(--plum); color: var(--on-plum); padding-block: 2.5rem 4.5rem; overflow: hidden; }
+    .hero h1 { margin: 0; font: 800 clamp(4.2rem, 20vw, 14rem)/.85 var(--display); letter-spacing: -.05em; }
+    .hero h1 span { color: var(--pink); }
+    .hero-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2rem; margin-top: 2rem; }
+    .hero p { max-width: 30rem; margin: 0 0 1.5rem; font-size: 1.25rem; }
+    .btn { display: inline-block; padding: .85rem 1.7rem; border-radius: 999px; font-weight: 500; text-decoration: none; background: var(--gold); color: #2a0f2e; border: 2px solid var(--gold); }
+    .btn:hover { background: #f2c677; }
+    .btn.alt { background: transparent; color: inherit; border-color: currentColor; margin-left: .5rem; }
+    .btn.alt:hover { background: rgba(255,255,255,.12); }
+    .swatches { display: flex; gap: .6rem; align-items: flex-end; }
+    .swatches i { display: block; width: 3.2rem; border-radius: 999px 999px .6rem .6rem; }
+    .swatches i:nth-child(1) { height: 7rem; background: var(--pink); }
+    .swatches i:nth-child(2) { height: 9.5rem; background: var(--gold); }
+    .swatches i:nth-child(3) { height: 5.5rem; background: var(--lilac); }
+    .swatches i:nth-child(4) { height: 8rem; background: var(--on-plum); }
+
+    /* sections */
+    section { padding-block: 4rem; }
+    h2 { font: 800 clamp(2rem, 5vw, 3.1rem)/1.05 var(--display); letter-spacing: -.025em; margin: 0 0 1rem; }
+    .lead { max-width: 38rem; color: var(--muted); margin: 0; }
+
+    .cats { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; margin: 2.25rem 0 0; padding: 0; list-style: none; }
+    .cats a { display: flex; flex-direction: column; justify-content: flex-end; min-height: 11rem; padding: 1.25rem; border-radius: 1.5rem 1.5rem 1.5rem .25rem; text-decoration: none; color: #2a0f2e; font: 800 1.5rem var(--display); }
+    .cats a small { font: 400 .95rem var(--body); margin-top: .2rem; }
+    .cats li:nth-child(1) a { background: var(--pink); color: #fff; }
+    .cats li:nth-child(2) a { background: var(--gold); }
+    .cats li:nth-child(3) a { background: var(--lilac); }
+    .cats li:nth-child(4) a { background: var(--plum); color: var(--on-plum); }
+    .cats a:hover { transform: translateY(-4px); }
+    .cats a { transition: transform .2s; }
+
+    .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; margin: 2.25rem 0 0; padding: 0; list-style: none; }
+    .product .shot { aspect-ratio: 4 / 5; border-radius: 1rem; background: var(--line); display: grid; place-items: end center; padding-bottom: 1.2rem; }
+    .product .shot i { display: block; width: 28%; height: 62%; border-radius: 999px 999px .8rem .8rem; background: var(--pink); }
+    .product:nth-child(2) .shot i { background: var(--gold); width: 36%; height: 48%; border-radius: .8rem; }
+    .product:nth-child(3) .shot i { background: var(--lilac); width: 24%; height: 70%; }
+    .product h3 { margin: .9rem 0 .2rem; font: 800 1.2rem var(--display); }
+    .product p { margin: 0 0 .6rem; color: var(--muted); }
+    .product a { font-weight: 500; text-decoration-color: var(--pink); text-underline-offset: 4px; }
+
+    .promise { border-block: 1px solid var(--line); }
+    .promise ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; list-style: none; padding: 0; margin: 2rem 0 0; }
+    .promise li { border-left: 5px solid var(--pink); padding-left: 1rem; }
+    .promise li:nth-child(2) { border-color: var(--gold); }
+    .promise li:nth-child(3) { border-color: var(--lilac); }
+    .promise h3 { margin: 0 0 .3rem; font: 800 1.2rem var(--display); }
+    .promise p { margin: 0; color: var(--muted); }
+
+    .signup { background: var(--pink); color: #fff; }
+    .signup .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem 3rem; }
+    .signup h2 { margin: 0; }
+    .signup form { display: flex; flex-wrap: wrap; gap: .6rem; }
+    .signup input { padding: .85rem 1.2rem; border-radius: 999px; border: 2px solid #fff; font: inherit; min-width: 15rem; background: #fff; color: #2a0f2e; }
+    .signup button { padding: .85rem 1.6rem; border-radius: 999px; border: 2px solid #2a0f2e; background: #2a0f2e; color: #fff; font: 500 1rem var(--body); cursor: pointer; }
+    .signup button:hover { background: #4a1d52; }
+
+    /* footer */
+    .site-footer { background: var(--plum); color: var(--on-plum); padding-block: 2.5rem; font-size: .95rem; }
+    .site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1.5rem 2.5rem; }
+    .site-footer strong { font: 800 1.2rem var(--display); }
+    .site-footer p { margin: .2rem 0 0; opacity: .85; }
+    .site-footer ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 1.25rem; flex-wrap: wrap; }
+
+    @media (prefers-reduced-motion: reduce) { .cats a { transition: none; } .cats a:hover { transform: none; } }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER: logo and navigation -->
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="index.html">Big Viva</a>
+      <nav class="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="#shop">Shop</a></li>
+          <li><a href="#featured">Best sellers</a></li>
+          <li><a href="#why">Why Big Viva</a></li>
+          <li><a href="#join">Join</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN: the page's unique content -->
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap">
+        <h1 id="hero-title">Big <span>Viva</span></h1>
+        <div class="hero-row">
+          <div>
+            <p>Hair and beauty products made to help you look and feel your best, every day.</p>
+            <a class="btn" href="#shop">Shop now</a>
+            <a class="btn alt" href="#featured">See best sellers</a>
+          </div>
+          <div class="swatches" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="shop" aria-labelledby="shop-title">
+      <div class="wrap">
+        <h2 id="shop-title">Shop by category</h2>
+        <p class="lead">From shampoo to lipstick, find what your routine needs.</p>
+        <ul class="cats">
+          <li><a href="#">Hair care<small>Shampoo, conditioner, oils</small></a></li>
+          <li><a href="#">Skincare<small>Cleanse, moisturise, glow</small></a></li>
+          <li><a href="#">Makeup<small>Lips, eyes, face</small></a></li>
+          <li><a href="#">Hair styling<small>Wigs, extensions, tools</small></a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="featured" aria-labelledby="featured-title" style="padding-top:0">
+      <div class="wrap">
+        <h2 id="featured-title">Best sellers</h2>
+        <ul class="products">
+          <li class="product">
+            <div class="shot" role="img" aria-label="Product photo placeholder"><i></i></div>
+            <h3>Hair Growth Oil</h3>
+            <p>Lightweight oil that nourishes your scalp.</p>
+            <a href="#">Add to cart</a>
+          </li>
+          <li class="product">
+            <div class="shot" role="img" aria-label="Product photo placeholder"><i></i></div>
+            <h3>Glow Face Cream</h3>
+            <p>Daily moisture for soft, bright skin.</p>
+            <a href="#">Add to cart</a>
+          </li>
+          <li class="product">
+            <div class="shot" role="img" aria-label="Product photo placeholder"><i></i></div>
+            <h3>Velvet Lip Colour</h3>
+            <p>Rich colour that lasts all day.</p>
+            <a href="#">Add to cart</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="why" class="promise" aria-labelledby="why-title">
+      <div class="wrap">
+        <h2 id="why-title">Why choose Big Viva</h2>
+        <ul>
+          <li><h3>Quality ingredients</h3><p>Products chosen for how well they work and how they feel.</p></li>
+          <li><h3>Made for every look</h3><p>Shades and formulas for every hair type and skin tone.</p></li>
+          <li><h3>Fast delivery</h3><p>Order today and get your products at your door.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="join" class="signup" aria-labelledby="join-title">
+      <div class="wrap">
+        <h2 id="join-title">Get beauty news and offers</h2>
+        <form action="#" method="post">
+          <label for="email" style="position:absolute;left:-9999px">Email address</label>
+          <input id="email" type="email" name="email" placeholder="Your email address" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER: closing info and links -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div>
+        <strong>Big Viva</strong>
+        <p>Hair and beauty products.</p>
+      </div>
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="#shop">Shop</a></li>
+          <li><a href="#featured">Best sellers</a></li>
+          <li><a href="#why">Why Big Viva</a></li>
+          <li><a href="#join">Join</a></li>
+        </ul>
+      </nav>
+      <p>&copy; 2026 Big Viva. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
